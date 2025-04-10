@@ -1,0 +1,17 @@
+{
+  "extends": "@tsconfig/node22/tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./",
+    "baseUrl": ".",
+    "paths": {
+      "#*": ["./src/*"]
+    }
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["dist"],
+  "noImplicitAny": true,
+  "moduleResolution": "node",
+  "sourceMap": true,
+  "module": "es6"
+}
