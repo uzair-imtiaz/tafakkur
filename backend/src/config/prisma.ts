@@ -1,15 +1,5 @@
-import { neon } from "@neondatabase/serverless";
-import config from "#config";
+import { PrismaClient } from "@prisma/client/extension";
 
-const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD } = config;
+const prisma = new PrismaClient();
 
-const sql = neon(
-  `postgresql://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?sslmode=require`
-);
-
-async function getPgVersion() {
-  const result = await sql`SELECT version()`;
-  console.log(result[0]);
-}
-
-getPgVersion();
+export default prisma;

@@ -1,9 +1,14 @@
+import errorMiddleware from "#middlewares/error.middleware.js";
 import express from "express";
 
 const app = express();
 
-app.get("/health-check", (_, res) => {
-  res.send("OK");
+app.use(express.json());
+
+app.use(errorMiddleware);
+
+app.get("/healthcheck", (_req, res) => {
+  res.send("API is up and running!");
 });
 
 app.listen(process.env.PORT || 3000, () => {
