@@ -7,9 +7,7 @@ const sql = neon(
   `postgresql://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}?sslmode=require`
 );
 
-async function getPgVersion() {
+export async function getPgVersion() {
   const result = await sql`SELECT version()`;
-  console.log(result[0]);
+  return result[0].version;
 }
-
-getPgVersion();

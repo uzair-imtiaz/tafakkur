@@ -136,3 +136,8 @@ dist
 
 # prisma generated
 **/generated/
+
+# bruno
+tafakkur
+*.bru
+bruno.json

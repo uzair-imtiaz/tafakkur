@@ -5,8 +5,8 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 
 const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
   try {
-    // see if you need to do split(" ")[1]
     const token = req.headers.authorization;
+
     if (!token) {
       throw new HttpError(401, "Unauthorized");
     }

@@ -1,8 +1,7 @@
-import prisma from "#config/prisma.js";
+import config, { prisma } from "#config";
 import { HttpError } from "#errors/HttpError.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import config from "#config/index.js";
 import { JwtPayload } from "./types";
 
 export const registerUser = async (
@@ -22,7 +21,7 @@ export const registerUser = async (
     throw new HttpError(400, "User already exists");
   }
 
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword = await bcrypt.hash(password, 11);
   const user = await prisma.user.create({
     data: {
       email,
