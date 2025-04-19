@@ -1,19 +1,24 @@
+import { getEnvVar } from "#utils";
 import * as dotenv from "dotenv";
 
 dotenv.config();
 
 const config = {
   NODE_ENV: process.env.NODE_ENV,
-  APP_NAME: process.env.APP_NAME,
-  PORT: process.env.PORT,
-  DATABASE_URL: process.env.DATABASE_URL,
-  PGHOST: process.env.PGHOST,
-  PGDATABASE: process.env.PGDATABASE,
-  PGUSER: process.env.PGUSER,
-  PGPASSWORD: process.env.PGPASSWORD,
-  ENDPOINT_ID: process.env.ENDPOINT_ID,
-  SECRET_KEY: process.env.SECRET_KEY,
-};
+  PORT: getEnvVar("PORT"),
+  DATABASE_URL: getEnvVar("DATABASE_URL"),
+  PGHOST: getEnvVar("PGHOST"),
+  PGDATABASE: getEnvVar("PGDATABASE"),
+  PGUSER: getEnvVar("PGUSER"),
+  PGPASSWORD: getEnvVar("PGPASSWORD"),
+  SECRET_KEY: getEnvVar("SECRET_KEY"),
+  GOOGLE_CLIENT_ID: getEnvVar("GOOGLE_CLIENT_ID"),
+  GOOGLE_CLIENT_SECRET: getEnvVar("GOOGLE_CLIENT_SECRET"),
+  BASE_URL:
+    process.env.NODE_ENV === "production"
+      ? getEnvVar("BASE_URL")
+      : "http://localhost:5001/api",
+} as const;
 
 export default config;
-export {default as prisma} from "./prisma";
+export { default as prisma } from "./prisma";

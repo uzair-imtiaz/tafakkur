@@ -8,7 +8,6 @@ export const registerUser = async (
   email: string,
   password: string,
   name: string,
-  age: number,
   username: string
 ) => {
   const existingUser = await prisma.user.findUnique({
@@ -27,8 +26,8 @@ export const registerUser = async (
       email,
       password: hashedPassword,
       name,
-      age,
       username,
+      role: "USER"
     },
   });
   if (!user) {
@@ -52,7 +51,7 @@ export const loginUser = async (emailOrUsername: string, password: string) => {
     throw new HttpError(401, "Invalid credentials");
   }
 
-  const isMatch = await bcrypt.compare(password, user.password);
+  const isMatch = await bcrypt.compare(password, user.password!);
   if (!isMatch) {
     throw new HttpError(401, "Invalid credentials");
   }

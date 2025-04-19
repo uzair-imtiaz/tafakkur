@@ -1,6 +1,6 @@
 import { Response } from "express";
 
-export const successResponse = <T extends object | any[]>(
+const successResponse = <T extends object | any[]>(
   res: Response,
   data: T,
   message = "Request successful",
@@ -12,3 +12,5 @@ export const successResponse = <T extends object | any[]>(
     data,
   });
 };
+
+export default successResponse;
